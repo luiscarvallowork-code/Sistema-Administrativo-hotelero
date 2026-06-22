@@ -1,0 +1,211 @@
+.barra-lateral {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.barra-lateral__logo {
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.barra-lateral__logo h1 {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-surface);
+  letter-spacing: 0.5px;
+}
+
+.barra-lateral__logo span {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--sidebar-text);
+  margin-top: 2px;
+  opacity: 0.7;
+}
+
+.barra-lateral__nav {
+  flex: 1;
+  padding: var(--spacing-sm) 0;
+}
+
+.barra-lateral__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.barra-lateral__enlace {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 10px var(--spacing-lg);
+  color: var(--sidebar-text);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  transition: background var(--transition-fast), color var(--transition-fast);
+  border-left: 3px solid transparent;
+}
+
+.barra-lateral__enlace:hover {
+  background: var(--sidebar-hover);
+  color: var(--sidebar-text-hover);
+}
+
+.barra-lateral__enlace--activo {
+  background: var(--sidebar-active-bg);
+  color: var(--sidebar-text-hover);
+  border-left-color: var(--sidebar-active-border);
+}
+
+.barra-lateral__enlace--activo:hover {
+  background: var(--sidebar-active-bg);
+}
+
+.barra-lateral__icono {
+  width: 20px;
+  text-align: center;
+  font-size: var(--font-size-base);
+  flex-shrink: 0;
+}
+
+.barra-lateral__texto {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.barra-lateral__flecha {
+  font-size: var(--font-size-xs);
+  transition: transform var(--transition-fast);
+}
+
+.barra-lateral__flecha--abierto {
+  transform: rotate(180deg);
+}
+
+.barra-lateral__submenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-base);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.barra-lateral__submenu--abierto {
+  max-height: 500px;
+}
+
+.barra-lateral__submenu .barra-lateral__enlace {
+  padding-left: calc(var(--spacing-lg) + 28px);
+  font-size: var(--font-size-xs);
+}
+
+.barra-lateral__submenu .barra-lateral__enlace::before {
+  content: "+";
+  margin-right: 6px;
+  opacity: 0.4;
+}
+
+.barra-lateral__footer {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: var(--font-size-xs);
+  opacity: 0.6;
+}
+
+.contenido-principal {
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  padding: 0 40px var(--spacing-lg) 40px;
+  background: var(--color-bg);
+}
+
+/* =============================================
+   Sidebar colapsable
+   ============================================= */
+
+.barra-lateral__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px var(--spacing-lg);
+  background: none;
+  border: none;
+  color: var(--sidebar-text);
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background var(--transition-fast);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.barra-lateral__toggle:hover {
+  background: var(--sidebar-hover);
+  color: var(--sidebar-text-hover);
+}
+
+/* Estado colapsado */
+.barra-lateral--colapsada {
+  width: var(--sidebar-collapsed-width);
+  transition: width var(--transition-base);
+}
+
+.barra-lateral--colapsada .barra-lateral__logo {
+  padding: var(--spacing-sm);
+  text-align: center;
+}
+.barra-lateral--colapsada .barra-lateral__logo h1 {
+  font-size: var(--font-size-sm);
+  overflow: hidden;
+  white-space: nowrap;
+}
+.barra-lateral--colapsada .barra-lateral__logo span {
+  display: none;
+}
+
+.barra-lateral--colapsada .barra-lateral__enlace {
+  gap: 0;
+  padding: 10px 0;
+  justify-content: center;
+  border-left-width: 2px;
+}
+
+.barra-lateral--colapsada .barra-lateral__texto,
+.barra-lateral--colapsada .barra-lateral__flecha {
+  display: none;
+}
+
+.barra-lateral--colapsada .barra-lateral__icono {
+  width: auto;
+  font-size: 1.1rem;
+}
+
+.barra-lateral--colapsada .barra-lateral__submenu {
+  display: none;
+}
+
+.barra-lateral--colapsada .barra-lateral__footer {
+  display: none;
+}
+
+.barra-lateral--colapsada .barra-lateral__toggle {
+  padding: 10px 0;
+}
+
+/* Ajuste del contenido principal */
+.barra-lateral--colapsada ~ .contenido-principal {
+  margin-left: var(--sidebar-collapsed-width);
+  transition: margin-left var(--transition-base);
+}
